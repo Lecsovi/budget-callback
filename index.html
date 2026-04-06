@@ -1,7 +1,26 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
   <html>
-  <head><title>Redirect</title></head>
+  <head><title>Bank Callback</title></head>
   <body>
-  <script>window.location.href = 'budgetapp://callback' + window.location.search;</script>
+  <p>Hitelesítés sikeres, visszatérés az appba...</p>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+    if (code) {
+      fetch('https://sppzgtvnqfwgwryusrwh.supabase.co/rest/v1/auth_callbacks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwcHpndHZucWZ3Z3dyeXVzcndoIiwicm9sZSI6ImF
+  ub24iLCJpYXQiOjE3NzUzOTQ3NTQsImV4cCI6MjA5MDk3MDc1NH0.J0y2c03Tn6GktKiA-rXSnt2Yid7GyKfFxtxjPnPkJj8',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwcHpndHZucWZ3Z3dyeXVzcndoI
+  iwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzOTQ3NTQsImV4cCI6MjA5MDk3MDc1NH0.J0y2c03Tn6GktKiA-rXSnt2Yid7GyKfFxtxjPnPkJj8',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ code, state, created_at: new Date().toISOString() })
+      });
+    }
+  </script>
   </body>
   </html>
