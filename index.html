@@ -10,6 +10,7 @@
     if (code) {
       fetch('https://sppzgtvnqfwgwryusrwh.supabase.co/rest/v1/auth_callbacks', {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
           'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwcHpndHZucWZ3Z3dyeXVzcndoIiwicm9sZSI6ImF
