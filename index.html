@@ -1,27 +1,21 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
   <html>
-  <head><title>Bank Callback</title></head>
+  <head><title>Callback</title></head>
   <body>
-  <p>Hitelesítés sikeres, visszatérés az appba...</p>
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
-    const state = params.get('state');
-    if (code) {
-      fetch('https://sppzgtvnqfwgwryusrwh.supabase.co/rest/v1/auth_callbacks', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwcHpndHZucWZ3Z3dyeXVzcndoIiwicm9sZSI6ImF
-  ub24iLCJpYXQiOjE3NzUzOTQ3NTQsImV4cCI6MjA5MDk3MDc1NH0.J0y2c03Tn6GktKiA-rXSnt2Yid7GyKfFxtxjPnPkJj8',
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwcHpndHZucWZ3Z3dyeXVzcndoI
-  iwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzOTQ3NTQsImV4cCI6MjA5MDk3MDc1NH0.J0y2c03Tn6GktKiA-rXSnt2Yid7GyKfFxtxjPnPkJj8',
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({ code, state, created_at: new Date().toISOString() })
-      });
-    }
+  var code = new URLSearchParams(window.location.search).get('code');
+  if (code) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://sppzgtvnqfwgwryusrwh.supabase.co/rest/v1/auth_callbacks');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('apikey', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwcHpndHZucWZ3Z3dyeXVzcndo
+  Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzOTQ3NTQsImV4cCI6MjA5MDk3MDc1NH0.J0y2c03Tn6GktKiA-rXSnt2Yid7GyKfFxtxjPnPkJj8');
+    xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNwcHpndHZucW
+  Z3Z3dyeXVzcndoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzOTQ3NTQsImV4cCI6MjA5MDk3MDk1NH0.J0y2c03Tn6GktKiA-rXSnt2Yid7GyKfFxtxjPnPkJj8');
+    xhr.setRequestHeader('Prefer', 'return=minimal');
+    xhr.send(JSON.stringify({code: code}));
+  }
   </script>
+  <p>Hitelesites sikeres.</p>
   </body>
   </html>
